@@ -4,6 +4,7 @@
 #
 class globus::gridftp (
   $tcp_range = $globus::tcp_range,
+  $data_interface = '',
 ) inherits globus {
   include gridcert::crl
   require gridcert
@@ -23,7 +24,7 @@ class globus::gridftp (
     group   => 'root',
     mode    => '0644',
     require => Package['globus-gridftp-server-progs'],
-    source  => 'puppet:///modules/globus/gridftp.conf',
+    content =>  template('globus/gridftp.conf.erb'),
   }
   file { '/etc/init.d/globus-gridftp-server':
     owner   => 'root',
