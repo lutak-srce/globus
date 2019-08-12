@@ -38,7 +38,6 @@ class globus::myproxy (
       'puppet:///private/gridcert/hostcert.pem',
     ],
     require => [ File['/etc/grid-security/myproxy'], Package['myproxy-server'], Class['gridcert'] ],
-    notify  => Service['globus-gridftp-server'],
   }
   file { '/etc/grid-security/myproxy/hostkey.pem':
     ensure  => file,
